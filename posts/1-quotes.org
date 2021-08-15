@@ -1,0 +1,56 @@
+#+options: ':nil *:t -:t ::t <:t H:3 \n:nil ^:t arch:headline
+#+options: author:t broken-links:nil c:nil creator:nil
+#+options: d:(not "LOGBOOK") date:t e:t email:nil f:t inline:t num:t
+#+options: p:nil pri:nil prop:nil stat:t tags:t tasks:t tex:t
+#+options: timestamp:t title:t toc:t todo:t |:t
+#+title: Quotes
+#+date: <2021-08-14 Sat>
+#+author: Marcos Magueta
+#+email: maguetamarcos@gmail.com
+#+language: en
+#+select_tags: export
+#+exclude_tags: noexport
+#+creator: Emacs 28.0.50 (Org mode 9.4.4)
+#+options: html-link-use-abs-url:nil html-postamble:auto
+#+options: html-preamble:t html-scripts:t html-style:t
+#+options: html5-fancy:nil tex:t
+#+html_doctype: xhtml-strict
+#+html_container: div
+#+description:
+#+keywords:
+#+html_link_home:
+#+html_link_up:
+#+html_mathjax:
+#+html_equation_reference_format: \eqref{%s}
+#+html_head:
+#+html_head_extra:
+#+subtitle:
+#+infojs_opt:
+#+creator: <a href="https://www.gnu.org/software/emacs/">Emacs</a> 28.0.50 (<a href="https://orgmode.org">Org</a> mode 9.4.4)
+#+latex_header:
+#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="../css/site.css" />
+
+
+* Elgar
+* Ecclesiastes 1
+  #+BEGIN_QUOTE
+  Composition of Qoheleth son of David, king in Jerusalem.
+  Sheer futility, Qoheleth says. Sheer futility: everything is futile!
+  What profit can we show for all our toil, toiling under the sun?
+  A generation goes, a generation comes, yet the earth stands firm for ever.
+  The sun rises, the sun sets; then to its place it speeds and there it rises.
+  Southward goes the wind, then turns to the north; it turns and turns again; then back to its circling goes the wind.
+  Into the sea go all the rivers, and yet the sea is never filled, and still to their goal the rivers go.
+  All things are wearisome. No one can say that eyes have not had enough of seeing, ears their fill of hearing.
+  What was, will be again, what has been done, will be done again, and there is nothing new under the sun!
+  Take anything which people acclaim as being new: it existed in the centuries preceding us.
+  No memory remains of the past, and so it will be for the centuries to come -- they will not be remembered by their successors.
+  I, Qoheleth, have reigned over Israel in Jerusalem.
+  Wisely I have applied myself to investigation and exploration of everything that happens under heaven. What a wearisome task God has given humanity to keep us busy!
+  I have seen everything that is done under the sun: how futile it all is, mere chasing after the wind!
+  What is twisted cannot be straightened, what is not there cannot be counted.
+  I thought to myself: I have acquired a greater stock of wisdom than anyone before me in Jerusalem. I myself have mastered every kind of wisdom and science.
+  I have applied myself to understanding philosophy and science, stupidity and folly, and I now realise that all this too is chasing after the wind.
+  Much wisdom, much grief; the more knowledge, the more sorrow.
+  #+END_QUOTE
+* Corinthians 12

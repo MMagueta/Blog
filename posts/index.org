@@ -1,0 +1,4 @@
+#+TITLE: Home
+
+- [[file:1-quotes.org][Quotes]]
+- [[file:sitemap.org][Sitemap for project posts]]
