@@ -1,5 +1,2 @@
-#+TITLE: Home
+#+TITLE: Sabre
 #+INCLUDE: "/home/mmagueta/Documents/git/Personal/Blog/posts/header.org"
-
-* Topics
-  + [[file:programming/sabre.org][Sabre]]

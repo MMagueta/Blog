@@ -1,5 +1,7 @@
 (require 'ox-publish)
 
+(setq org-export-with-toc nil)
+
 (setq org-publish-project-alist
       '(("posts"
          :base-directory "posts/"
@@ -7,7 +9,8 @@
          :publishing-directory "public/"
          :recursive t
          :publishing-function org-html-publish-to-html
-         :auto-sitemap t
+         :auto-sitemap nil
+	 :exclude "header.org"
          :sitemap-title "Home"
          :sitemap-filename "index.org"
          :sitemap-style list

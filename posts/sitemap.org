@@ -1,4 +1,0 @@
-#+TITLE: Home
-#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="../css/site.css" />
-
-- [[file:1-quotes.org][Quotes]]

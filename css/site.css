@@ -226,3 +226,7 @@ body .clearfix {
     column-gap: 3em;
   }
 }
+.header {
+    margin: 1rem auto 1rem auto;
+    width: 12rem;
+}
