@@ -1,0 +1,2 @@
+#+TITLE: On Philosophy of History
+#+INCLUDE: "../../header.org"

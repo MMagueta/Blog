@@ -3,5 +3,5 @@
 #+HTML_HEAD: <link rel="stylesheet" type="text/css" href="../css/site.css" />
 
 #+begin_header
-| [[file:index.org][Home]] | I | II | III | IV | V |
+| [[file:index.org][Home]] | [[file:essays/index.org][Essays]] | II | III | IV | [[eww:https://github.com/MMagueta][GitHub]] |
 #+end_header

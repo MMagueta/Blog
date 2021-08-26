@@ -228,5 +228,5 @@ body .clearfix {
 }
 .header {
     margin: 1rem auto 1rem auto;
-    width: 12rem;
+    display: table;
 }

@@ -1,0 +1,39 @@
+#+TITLE: Essays
+#+INCLUDE: "../header.org"
+
+In this section I am concerned with publishing essays of my thoughts
+on different subjects I am interested in. Some may consist of mere
+book reviews, others will be enriched by my personal opinion, some on
+personal matters and even public questions I don't see around very often.
+* Programming
+  + [[file:programming/fsharp-defense.org][A defense for F#]]
+  + [[file:programming/guix-nix.org][Reproducibility with Nix & Guix]]
+  + [[file:programming/using-fparsec.org][Using FParsec, a non boring guide]]
+  + [[file:programming/sabre.org][Sabre: A scheme for .NET]]
+* History
+  + [[file:history/philosophy-of-history.org][On Philosophy of History]]
+  + [[file:history/renaissance-republican-freedom.org][Renaissance Republican Freedom]]
+  + [[file:history/tocqueville-democracy.org][Tocqueville and Democracy]]
+* Philosophy
+  + [[file:philosophy/beauty.org][Beauty as a value]]
+  + [[file:philosophy/didascalicon.org][Didascalicon]]
+* Theology
+  + [[file:theology/light-of-faith.org][The light of faith]]
+  + [[file:theology/original-sin.org][Self determination and the original sin]]
+  + [[file:theology/will-to-believe.org][A will to believe and the modern times]]
+
+# #+BEGIN_SRC elisp
+#       (load-file "../../elisp/s-20210616.619.el")
+#       (defun fetch-files ()
+# 	(interactive)
+# 	(let* ((files (split-string
+# 		       (shell-command-to-string "find .") "\n" t)))
+# 	  (->> files
+# 	       (-remove (lambda (x) (not (s-ends-with? ".org" x)))))))
+
+#       (defun mount-posts ()
+# 	(->> (-map (lambda (x) (cdr (split-string x "/" t))) (fetch-files))
+# 	     (--remove (/= (length it) 2))
+# 	     (-map (lambda (x) (list (concat "file:" (concat "./" (car x) "/" (elt (cdr x) 0))) "") ))))
+#       (mount-posts)
+# #+END_SRC

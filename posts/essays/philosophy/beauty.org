@@ -1,0 +1,2 @@
+#+TITLE: Why beauty matters
+#+INCLUDE: "../../header.org"

@@ -1,0 +1,2 @@
+#+TITLE: Self determination & Original Sin
+#+INCLUDE: "../../header.org"

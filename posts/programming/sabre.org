@@ -1,2 +1,0 @@
-#+TITLE: Sabre
-#+INCLUDE: "/home/mmagueta/Documents/git/Personal/Blog/posts/header.org"
