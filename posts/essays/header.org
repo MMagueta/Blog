@@ -1,0 +1,7 @@
+#+DESCRIPTION: Header
+#+OPTIONS: num:nil ^:{}
+#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="../../css/site.css" />
+
+#+begin_header
+| [[file:index.org][Home]] | [[file:essays/index.org][Essays]] | [[eww:https://github.com/MMagueta][GitHub]] |
+#+end_header
