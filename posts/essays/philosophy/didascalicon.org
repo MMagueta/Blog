@@ -1,2 +1,0 @@
-#+TITLE: Didascalicon
-#+INCLUDE: "../../header.org"

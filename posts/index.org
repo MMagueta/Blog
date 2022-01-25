@@ -1,5 +1,33 @@
-#+TITLE: Home
-#+INCLUDE: "/home/mmagueta/Documents/git/Personal/Blog/posts/header.org"
+#+TITLE: Magueta's Blog
+#+INCLUDE: "./header.org"
 
 * About me
-  
+
+If you were to ask me who I am, I would not deny the trouble it would
+be. I am a software engineer, but such description is not
+meaningful. What kind of a software engineer am I? Since when I
+learned about the works in theology, philosophy, grammar and
+computation of [[https://en.wikipedia.org/wiki/Ramon_Llull][Ramon Llull]] I wondered if programming is not just about
+philosophy. It's the process of mapping one's thought into actuality,
+simply put, identifying universals via the rational thought on a
+relentless attempt to formalize them in a grammar (read as programming
+language).
+
+#+attr_html: :width 50%
+#+CAPTION[El Caballero de los Espejos]: The Knight of the Mirrors from Don Quixote, (my favorite novel) representing truth as a value. A most certain pillar on my perception of reality.
+[[file:images/El_Caballero_de_los_Espejos.jpg]]
+
+Given that motto that has been ruling my life ever since, I pursue
+what I can assess to be the best tools out there in order to approach
+truth and the real. F# is my main language, for I believe that by it
+having a strict and solid grammar, and being based on core aspects of
+the theory of computation, the path to truth is clearer. On the same
+realm of interest, I hold dearly philosophy, functional programming,
+literature, history, algebra, theology, type theory and et cetera. With such
+interests as measure, suddenly all my tools makes sense: freedom and
+truth come to justify Emacs, *nix, NixOS, F#, types and all my
+tools over the belt.
+
+In short, I fell in love with truth and I cannot see myself not
+seeking it.
+

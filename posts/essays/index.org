@@ -3,24 +3,28 @@
 
 In this section I am concerned with publishing essays of my thoughts
 on different subjects I am interested in. Some may consist of mere
-book reviews, others will be enriched by my personal opinion, some on
-personal matters and even public questions I don't see around very often.
+book reviews, others will be materialize my personal opinion, some on
+personal matters and even public questions I don't see around very
+often.
+
 * Programming
-  + [[file:programming/fsharp-defense.org][A defense for F#]]
-  + [[file:programming/guix-nix.org][Reproducibility with Nix & Guix]]
-  + [[file:programming/using-fparsec.org][Using FParsec, a non boring guide]]
-  + [[file:programming/sabre.org][Sabre: A scheme for .NET]]
+  + [[file:programming/serializing-types.org][Serializing F# types and Hindley-Milner]]
+  + Using FParsec, a non boring guide : WIP
+  + Factor and Forth, assembly taken seriously : WIP
+  + A defense to grammar : WIP
 * History
-  + [[file:history/philosophy-of-history.org][On Philosophy of History]]
-  + [[file:history/renaissance-republican-freedom.org][Renaissance Republican Freedom]]
-  + [[file:history/tocqueville-democracy.org][Tocqueville and Democracy]]
+  + On Philosophy of History : WIP
+  + Renaissance Republican Freedom : WIP
+  + Tocqueville and Democracy : WIP
+  + Battle of Rocroi and the definition of transcendent : WIP
 * Philosophy
-  + [[file:philosophy/beauty.org][Beauty as a value]]
-  + [[file:philosophy/didascalicon.org][Didascalicon]]
+  + Beauty as a value : WIP
+  + The Art of Reading : WIP
+  + Moderate realism : WIP
 * Theology
-  + [[file:theology/light-of-faith.org][The light of faith]]
-  + [[file:theology/original-sin.org][Self determination and the original sin]]
-  + [[file:theology/will-to-believe.org][A will to believe and the modern times]]
+  + The light of faith : WIP
+  + Self determination and the original sin : WIP
+  + A will to believe and the modern times : WIP
 
 # #+BEGIN_SRC elisp
 #       (load-file "../../elisp/s-20210616.619.el")

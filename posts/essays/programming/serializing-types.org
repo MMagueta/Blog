@@ -1,0 +1,3 @@
+#+TITLE: Serializing F# types and Hindley-Milner
+#+INCLUDE: "../header.org"
+ 

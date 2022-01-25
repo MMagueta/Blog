@@ -1,2 +1,0 @@
-#+TITLE: The Will to Believe
-#+INCLUDE: "../../header.org"

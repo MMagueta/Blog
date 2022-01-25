@@ -1,2 +1,0 @@
-#+TITLE: A. Tocqueville and Democracy
-#+INCLUDE: "../../header.org"

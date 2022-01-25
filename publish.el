@@ -11,12 +11,17 @@
          :publishing-function org-html-publish-to-html
          :auto-sitemap nil
 	 :exclude "header.org"
-         :sitemap-title "Home"
+         :sitemap-title "Index"
          :sitemap-filename "index.org"
          :sitemap-style list
          :author "Marcos Magueta"
          :email "maguetamarcos@gmail.com"
          :with-creator t)
+	("images"
+	 :base-directory "posts/images"
+	 :base-extension "png\\|jpg"
+	 :publishing-directory "public/images"
+	 :publishing-function org-publish-attachment)
         ("css"
          :base-directory "css/"
          :base-extension "css"

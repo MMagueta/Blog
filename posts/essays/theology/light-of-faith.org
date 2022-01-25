@@ -1,4 +1,0 @@
-#+TITLE: The light of faith
-#+INCLUDE: "../../header.org"
-
-
