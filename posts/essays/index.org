@@ -8,6 +8,7 @@ personal matters and even public questions I don't see around very
 often.
 
 * Programming
+  + [[file:programming/hosting-emacs-nix.org][Hosting with NixOS and Emacs]]
   + [[file:programming/serializing-types.org][Serializing F# types and Hindley-Milner]]
   + Using FParsec, a non boring guide : WIP
   + Factor and Forth, assembly taken seriously : WIP
