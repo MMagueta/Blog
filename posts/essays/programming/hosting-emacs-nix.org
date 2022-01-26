@@ -6,5 +6,8 @@ I decided to write a post on how to make a blog with tools that
 optimize your time at low effort. I always wanted to have a blog, but
 never could really catch on it, mostly because of many factors:
 
-1 Time :: One of my primal concerns was certainly the time I would be
-spending to create new web posts. At the same time longed for something 
+1 - Time :: One of my primal concerns was certainly the time I would be
+spending to create new posts and maintaining a website. This setup is
+cautious about the time you spend with tasks not related to proper
+writing, optimizing the process of deploying and keeping up with
+changes.
