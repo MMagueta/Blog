@@ -6,23 +6,22 @@ I decided to write a post on how to make a blog with tools that
 optimize your time at low effort. I always wanted to have a blog, but
 never could really catch on it, mostly because of many factors:
 
-1. Time :: One of my primal concerns was certainly the time I would be
-   spending to create new posts and maintaining a website. This setup
-   is cautious about the time you spend with tasks not related to
-   proper writing, optimizing the process of deploying and keeping up
-   with changes.
+- Time :: One of my primal concerns was certainly the time I would be
+  spending to create new posts and maintaining a website. This setup
+  is cautious about the time you spend with tasks not related to
+  proper writing, optimizing the process of deploying and keeping up
+  with changes.
 
-2. Performance :: I don't want to pay a high price for a blog, and
-   with that comes in limited resources. Hosting a web site with my
-   beloved F# is not an option. I will be dealing with a 1GB RAM
-   server.
+- Performance :: I don't want to pay a high price for a blog, and with
+  that comes in limited resources. Hosting a web site with my beloved
+  F# is not an option. I will be dealing with a 1GB RAM server.
 
-3. Reproducibility :: If *they* come after me and topple my web site,
-   I can host another somewhere else in a couple of minutes without
-   worrying with the configuration of Unix files.
+- Reproducibility :: If *they* come after me and topple my web site, I
+  can host another somewhere else in a couple of minutes without
+  worrying with the configuration of Unix files.
 
-4. Automation :: All the process needs to be automated to the point I
-   stop worrying with details, I just want to write page content.
+- Automation :: All the process needs to be automated to the point I
+  stop worrying with details, I just want to write page content.
 
 With these factors in mind, I came to the conclusion NixOS and Emacs
 are the perfect duo. NixOS solves reproducibility, attacking part of
