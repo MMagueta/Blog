@@ -6,7 +6,7 @@
       '(("posts"
          :base-directory "posts/"
          :base-extension "org"
-         :publishing-directory "public/"
+         :publishing-directory "/var/www/blog/"
          :recursive t
          :publishing-function org-html-publish-to-html
          :auto-sitemap nil
@@ -20,12 +20,12 @@
 	("images"
 	 :base-directory "posts/images"
 	 :base-extension "png\\|jpg"
-	 :publishing-directory "public/images"
+	 :publishing-directory "/var/www/blog/images"
 	 :publishing-function org-publish-attachment)
         ("css"
          :base-directory "css/"
          :base-extension "css"
-         :publishing-directory "public/css"
+         :publishing-directory "/var/www/blog/css"
          :publishing-function org-publish-attachment
          :recursive t)
          ("all" :components ("posts" "css"))))
