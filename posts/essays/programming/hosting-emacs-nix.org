@@ -6,8 +6,329 @@ I decided to write a post on how to make a blog with tools that
 optimize your time at low effort. I always wanted to have a blog, but
 never could really catch on it, mostly because of many factors:
 
-1 - Time :: One of my primal concerns was certainly the time I would be
-spending to create new posts and maintaining a website. This setup is
-cautious about the time you spend with tasks not related to proper
-writing, optimizing the process of deploying and keeping up with
-changes.
+1. Time :: One of my primal concerns was certainly the time I would be
+   spending to create new posts and maintaining a website. This setup
+   is cautious about the time you spend with tasks not related to
+   proper writing, optimizing the process of deploying and keeping up
+   with changes.
+
+2. Performance :: I don't want to pay a high price for a blog, and
+   with that comes in limited resources. Hosting a web site with my
+   beloved F# is not an option. I will be dealing with a 1GB RAM
+   server.
+
+3. Reproducibility :: If *they* come after me and topple my web site,
+   I can host another somewhere else in a couple of minutes without
+   worrying with the configuration of Unix files.
+
+4. Automation :: All the process needs to be automated to the point I
+   stop worrying with details, I just want to write page content.
+
+With these factors in mind, I came to the conclusion NixOS and Emacs
+are the perfect duo. NixOS solves reproducibility, attacking part of
+the time and automation. Emacs solves performance, since I can just
+compile org to HTML, time and automation.
+
+* Hosting services
+
+First of all, you will need a server and a domain. You can get both
+virtually anywhere by a relatively cheap price. In my case, I will be
+using [[eww:https://www.epik.com][Epik]] and [[eww:https://www.vultr.com][Vultr]]; Epik is known for their commitment to free
+speech; and Vultr because they offer QEMU KVM virtualization at a very
+low cost, meaning that you can upload your own OS image and it will be
+virtualized just fine. Both service providers are great, so if you are
+looking for options, I would recommend them.
+
+** Server Machine
+For hosting a machine with NixOS, you must first grab the image link
+on the [[eww:https://nixos.org/download.html#nixos-iso][official website]], add a new resource and plug it somehow to the
+resource assuming it allows QEMU and you can choose the image,
+otherwise you are locked to some evil Linux distro or some frenzy BSD,
+killing the factor of reproducibility and automation. On Vultr you
+simply choose the option "change OS" and add a custom image to the
+machine after you creating the resource. Then you are ready to boot it
+and log in the inbuilt browser terminal, which is where you must
+install at first, since we are not opting for a normal image already
+supported by default (which gets installed automatically).
+
+For installing NixOS and adding all the services we will need from the
+go, wait until section `[[*Installing and configuring the NixOS server][Installing and configuring the NixOS server]]`.
+
+** Domain
+For the domain registering, it may vary depending on the provider, but
+essentially the process is the same. You need to register the external
+hosts (A and AAAA) pointing to your machine static IPv4 and IPv6, and
+a CNAME redirecting `www` to your www-less domain. You can find
+documentation on how to do that in your DNS registry provider.
+
+* Making your blog with org-mode
+
+While on the NixOS side we will optimize our time and safeguard
+ourselves from the deploy headache, on the Emacs side we will prevent
+writing a web site from scratch. No JavaScript involved, no backend, no
+post CSS, (at least not if you don't want to) just good old static HTML.
+
+You can craft your own project structure, but for reference, here is mine:
+
+#+BEGIN_SRC shell
+.
+├── Makefile # <- A GNU/make entry to call publish.el and do other tricks
+├── css # <- Your static css folder
+│   └── site.css
+├── elisp # <- Elisp imports that you will be using to automate stuff at compilation time to HTML
+│   └── s-20210616.619.el
+├── posts # <- The structure of your web site
+│   ├── essays
+│   │   ├── header.org # <- A sub structure you want to replace the toplevel one or just layer in your pages
+│   │   ├── history
+│   │   ├── index.org
+│   │   ├── philosophy
+│   │   ├── programming
+│   │   │   ├── hosting-emacs-nix.org # <- Your specialized pages for posts
+│   │   │   └── serializing-types.org
+│   │   └── theology
+│   ├── header.org # <- Some shared structure you want to import in your pages
+│   ├── images # <- Images you might want to add
+│   │   └── El_Caballero_de_los_Espejos.jpg
+│   └── index.org # <- Your homepage file. It is important to have an index file at this level for nginx to get it later on
+└── publish.el # <- Your configuration script for building the project
+#+END_SRC
+
+With this structure you can simply link files and write in org-mode.
+
+At the beginning of the `header.org`, files you can add HTML tags, as in:
+
+#+BEGIN_SRC org-mode
+#+DESCRIPTION: Header
+#+OPTIONS: num:nil ^:{}
+#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="../../css/site.css" />
+
+#+begin_header
+| [[file:index.org][Home]] | [[file:essays/index.org][Essays]] | [[eww:https://github.com/MMagueta][GitHub]] |
+#+end_header
+#+END_SRC
+
+With tags mapped to your css file, meaning that a block with
+`BEGIN_HEADER`, for example, will have a class `.header` in your
+`site.css` applied (the second word after the underline gets a class
+applied under the same word). Take a look:
+
+#+BEGIN_SRC css
+.header {
+    margin: 1rem auto 1rem auto;
+    display: table;
+}
+#+END_SRC
+
+Pretty cool, I know. Minimal effort and a lot of gain, this is Emacs.
+
+There is so much more that you can do, but I will leave that your
+experiment. The [[https://orgmode.org/worg/org-tutorials/org-publish-html-tutorial.html][documentation]] of org publishing is quite complete.
+
+** Exporting the project
+Once you have your desired structure done, the next step is to publish
+your files to HTML. In our case, here is how you can edit your `publish.el`:
+
+#+BEGIN_SRC elisp
+(require 'ox-publish)
+
+(setq org-export-with-toc nil)
+
+(setq org-publish-project-alist
+      '(("posts"
+         :base-directory "posts/"
+         :base-extension "org" ;; The extension it should look for
+         :publishing-directory "/var/www/blog/" ;; Note the static files prefix
+         :recursive t
+         :publishing-function org-html-publish-to-html
+         :auto-sitemap nil ;; Adds a site map at the footer
+	 :exclude "header.org" ;; Which org files you do not want to include in the compilation. Auxiliar files go in here, such as headers
+         :sitemap-title "Index"
+         :sitemap-filename "index.org"
+         :sitemap-style list
+         :author "Marcos Magueta"
+         :email "maguetamarcos@gmail.com"
+         :with-creator t) ;; Adds the creator info to the footer
+	("images" ;; Adds the images you will be using in your pages
+	 :base-directory "posts/images"
+	 :base-extension "png\\|jpg"
+	 :publishing-directory "/var/www/blog/images"
+	 :publishing-function org-publish-attachment)
+        ("css" 
+         :base-directory "css/"
+         :base-extension "css"
+         :publishing-directory "/var/www/blog/css" ;; Worry about the /var/www/blog/ prefix, this is the common path that you will map on nginx
+         :publishing-function org-publish-attachment
+         :recursive t)
+         ("all" :components ("posts" "css"))))
+#+END_SRC
+
+Be very attentive to the prefix being used here: `/var/www/blog/`. On
+your local environment, it makes sense to change it to `public/` for
+testing, but when you host it, you should map nginx to point to the
+folder where index.html is located (the file generated from
+index.org).
+
+Now let's do a Makefile and add our function:
+
+#+BEGIN_SRC makefile
+.PHONY: all publish publish_no_init clean
+
+all: publish
+
+publish: publish.el
+	@echo "Publishing with sweet Emacs configs preloaded 🎂"
+	emacs --batch --load publish.el --funcall org-publish-all
+
+publish_no_init: publish.el
+	@echo "Publishing at high speed 🚄"
+	emacs --batch --no-init --load publish.el --funcall org-publish-all
+
+clean:
+	@echo "Cleaning project 🧹🗑"
+	@git reset --hard HEAD
+#+END_SRC
+
+You can add whatever you like, what is important is that you need to
+evaluate `publish.el` and then call `org-publish-all`.
+
+And we are done with the web site! 
+
+* Installing and configuring the NixOS server
+
+On this step we are concerned with installing NixOS and configuring it
+properly for the cloud, which includes having git, GNU/make, nginx and
+acme certbot for HTTP encryption.
+
+Here I list all the commands to make a standard install of NixOS and I
+halt on the process to edit the configuration.nix file, which
+describes your global system. This was extracted directly from the
+[[https://nixos.org/manual/nixos/stable/][NixOS Manual]], refer to them in order to understand the commands I will
+be applying here, noting that I am applying the Master Boot Record
+(MBR) path, not UEFI (MBR works out of the box on Vultr).
+
+#+BEGIN_SRC shell
+  sudo su
+  parted /dev/vda -- mklabel gpt
+  parted /dev/vda -- mkpart primary 512MiB -1GiB
+  parted /dev/vda -- mkpart primary linux-swap -1GiB 100%
+  parted /dev/vda -- mkpart ESP fat32 1MiB 512MiB
+  parted /dev/vda -- set 3 esp on
+  mkfs.ext4 -L nixos /dev/vda1
+  mkswap -L swap /dev/vda2
+  mkfs.fat -F 32 -n boot /dev/vda3
+  mount /dev/disk/by-label/nixos /mnt
+  mkdir -p /mnt/boot
+  mount /dev/disk/by-label/boot /mnt/boot
+  swapon /dev/vda2
+  nixos-generate-config --root /mnt
+#+END_SRC
+
+With that applied, you should now have a file on the mounted
+partition, so open `/mnt/etc/nixos/configuration.nix` with an editor,
+such as GNU/nano or GNU/Emacs. The install image by default does not
+ship with Emacs, but you can use it by running `nix-shell -p emacs`,
+which will fetch the packages and transport you to a nix-shell, where
+you have access to emacs in your PATH.
+
+Now, before editing the `configuration.nix`, run `mkdir -p
+/mnt/var/www/blog` to create your web site folder. With that, we can
+proceed to edit the, at first, intimidating nix file. It can be quite
+intimidating because the syntax is somewhat different, but don't fear
+the dark, the file is full of comments and the language is quite easy
+to pick up since everything is declarative. I like to think it is like
+a minotaur inviting you to eat ginger biscuits on his labyrinth: you are
+certainly going to be lost and scared of the minotaur, but the
+biscuits can be quite delicious.
+
+Here is my meta configuration filed with comments about what
+everything does and with all you need to change. In any doubt, again,
+refer to the [[https://nixos.org/manual/nixos/stable/][NixOS Manual]].
+
+#+BEGIN_SRC nix
+  { config, pkgs, ... }:
+
+  {
+    imports = [ ./hardware-configuration.nix ]; # Default, adds your generated hardware config
+    
+    boot.loader.grub.enable = true;
+    boot.loader.grub.device = "/dev/vda"; # Adds grub to your disk, change vda to whatever your disk is
+
+    networking.hostName = "herald"; # Your choice VM name
+    time.timeZone = "Europe/Warsaw"; # Your server continent and location, for example America/Sao_Paulo
+
+    networking.useDHCP = false;
+    networking.interfaces.yourEthernetInterface.useDHCP = true; # It will be possibly a different interface
+
+    services.nginx = { # Add your nginx entries
+      enable = true;
+      virtualHosts."yourDomain.com" = {
+	enableACME = true;
+	forceSSL = true;
+	root = "/var/www/blog"; # Where the static files will be
+      };
+      virtualHosts."www.yourDomain.com" = {
+	enableACME = true;
+	forceSSL = true;
+	root = "/var/www/blog";
+      };
+    };
+    security.acme.acceptTerms = true; # You need to accept acme terms to use certbot
+    security.acme.certs = { # Adds certbot atop of your nginx config to provide HTTPS
+      "yourDomain.com".email = "your@email.com";
+      "www.yourDomain.com".email = "your@email.com";
+    };
+    users.users.yourUsername = { # Specify your user, groups and ssh key
+      isNormalUser = true;
+      extraGroups = [ "wheel" ];
+      openssh.authorizedKeys.keys = [ "YOUR SSH KEY HERE" ]; # If not provided, you will log in with your password
+    };
+
+    environment.systemPackages = with pkgs; [ emacs git gnumake ]; # Add all the packages you want here. You can search for them by `nix search NAME`
+    services.openssh.enable = true; # Adds openssh and allows port 22 on the firewall, if enabled
+
+    networking.firewall.allowedTCPPorts = [ 80 443 ]; # Allow these 2 ports for webhosting with HTTPS and HTTP
+    networking.firewall.enable = true; # Enable the firewall, specially if acme certbot complains
+
+    system.stateVersion = "21.11"; # Nix system version, it will be the latest stable by default
+
+  }
+#+END_SRC
+
+After the editing is done, you are free to run `nixos-install` on the
+shell, and the magic should happen. If you made any typo or
+misconfiguration, the nix compilation will beat you up with a baseball
+bat until it is all fixed. When it is finished, it will ask for a root
+password twice; input yours provided from Vultr on the dashboard or
+anything you like.
+
+Now, do not reboot. We need to remove the image plugged in the
+resource, which you can do by the interface on Vultr. Only then,
+restart the machine, open once again the browser shell connector and
+log in as root. Do a `passwd` on your username and voilà! You are
+ready to enter as your user via OpenSSH.
+
+* Publish the website
+
+This is the easy part, now what is left to do is simply running `sudo
+chown -R yourUsername /var/www/` in order to allow your user to modify
+the directory and its subdirectories. Then running `make publish` (or
+whatever make command you made to build the project) on your project
+cloned from your repository. If you added `/var/www/blog/` on your
+`publish.el` file, it should just send the HTML files directly to the
+spot, making the web site visible instantaneously.
+
+* Extra
+There are some extra steps you can add to customize even further your
+web site. The first one I can think is to improve automation via some
+cron job. You can create a job via Nix that keeps polling changes in
+your git repository every N seconds and once there is a change, the
+web site gets automatically updated.
+
+Another thing would be creating a nix package out of the web site
+itself. This helps to make the context pure, like nix longs things to
+be, enhancing reproducibility on local and remote environments.
+
+The last is adding ELISP or other Babel org source code blocks to
+modify and automate your page. Note that they are not like JavaScript,
+they will just be ran at compilation time.

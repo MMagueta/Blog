@@ -1,21 +1,15 @@
-.PHONY: all publish publish_no_init
+.PHONY: all publish publish_no_init clean
 
 all: publish
 
-host: server.el
-	@echo "Hosting website..."
-	emacs --batch --no-init --load server.el
-
 publish: publish.el
-	@echo "Publishing... with current Emacs configurations."
+	@echo "Publishing with sweet Emacs configs preloaded 🎂"
 	emacs --batch --load publish.el --funcall org-publish-all
 
 publish_no_init: publish.el
-	@echo "Publishing... with --no-init."
+	@echo "Publishing at high speed 🚄"
 	emacs --batch --no-init --load publish.el --funcall org-publish-all
 
 clean:
-	@echo "Cleaning up.."
-	@rm -rvf *.elc
-	@rm -rvf public
-	@rm -rvf ~/.org-timestamps/*
+	@echo "Cleaning project 🧹🗑"
+	@git reset --hard HEAD
