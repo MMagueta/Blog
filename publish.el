@@ -1,3 +1,4 @@
+;; (require 'org)
 (require 'ox-publish)
 
 (setq org-export-with-toc nil)
@@ -29,3 +30,15 @@
          :publishing-function org-publish-attachment
          :recursive t)
          ("all" :components ("posts" "css"))))
+
+(defun rss-publish ()
+  (progn
+    (org-babel-tangle-file "scripts/rss.org")
+    (eval-expression (load-file "scripts/rss.el"))
+    (shell-command "mkdir -p generated/static/ && mv rss.xml generated/static/")))
+
+(progn
+  (org-publish-all)
+  (rss-publish))
+
+(provide 'publish)

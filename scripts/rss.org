@@ -1,0 +1,32 @@
+#+NAME: rss-metadata
+| Name                         | Category    | Date                 | Description                                          | File              |
+|------------------------------+-------------+----------------------+------------------------------------------------------+-------------------|
+| Hosting with NixOS and Emacs | programming | 2022-01-26 Wed 04:19 | Hosting a blog with low effort has never been easier | hosting-emacs-nix |
+
+#+BEGIN_SRC emacs-lisp :var rss-metadata=rss-metadata :tangle yes
+  (load (expand-file-name "./scripts/xmlgen.el"))
+
+  (require 'xmlgen)
+
+  (defun rss-create-item (item-data)
+    `(item
+      (title ,(elt item-data 0))
+      (guid ,(concat "www.marcosmagueta.com/essays/" (elt item-data 1) (elt item-data 4)))
+      (link ,(concat "www.marcosmagueta.com/essays/" (elt item-data 1) (elt item-data 4)))
+      (pubDate ,(elt item-data 2))
+      (description ,(elt item-data 3))))
+
+  (defun build-rss-body (table)
+    `(rss :version "2.0"
+      (channel
+      (title "MarcosMagueta.com: A blog with truth as value")
+      (description "Essays based on classical philosophy regarding programming, theology, beauty and history.")
+      (link "https://marcosmagueta.com/rss.xml")
+      ;; (atom:link :href "https://marcosmagueta.com/rss.xml" :rel "self" :type "application/rss+xml")
+       ,@(mapcar 'rss-create-item table))))
+
+  (with-temp-file "rss.xml"
+    (insert (xmlgen (build-rss-body rss-metadata))))
+#+END_SRC
+
+#+RESULTS:

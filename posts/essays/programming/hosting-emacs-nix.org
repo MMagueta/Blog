@@ -97,15 +97,18 @@ With this structure you can simply link files and write in org-mode.
 
 At the beginning of the `header.org`, files you can add HTML tags, as in:
 
-#+BEGIN_SRC org-mode
+#+BEGIN_SRC org
 #+DESCRIPTION: Header
 #+OPTIONS: num:nil ^:{}
 #+HTML_HEAD: <link rel="stylesheet" type="text/css" href="../../css/site.css" />
 
 #+begin_header
-| [[file:index.org][Home]] | [[file:essays/index.org][Essays]] | [[eww:https://github.com/MMagueta][GitHub]] |
+| [\[file:index.org][Home]] | [\[file:essays/index.org][Essays]] | [\[eww:https://github.com/MMagueta][GitHub]] |
 #+end_header
 #+END_SRC
+
+NOTE: Ignore the `\` before the links, they are just there so it
+doesn't get exported altogether.
 
 With tags mapped to your css file, meaning that a block with
 `BEGIN_HEADER`, for example, will have a class `.header` in your
@@ -128,7 +131,7 @@ experiment. The [[https://orgmode.org/worg/org-tutorials/org-publish-html-tutori
 Once you have your desired structure done, the next step is to publish
 your files to HTML. In our case, here is how you can edit your `publish.el`:
 
-#+BEGIN_SRC elisp
+#+BEGIN_SRC emacs-lisp
 (require 'ox-publish)
 
 (setq org-export-with-toc nil)

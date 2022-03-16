@@ -3,5 +3,6 @@
 #+HTML_HEAD: <link rel="stylesheet" type="text/css" href="../../css/site.css" />
 
 #+begin_header
-| [[file:index.org][Home]] | [[file:essays/index.org][Essays]] | [[eww:https://github.com/MMagueta][GitHub]] |
+#+ATTR_HTML: :style width:100%;
+| [[file:index.org][Home]] | [[file:essays/index.org][Essays]] | [[eww:https://github.com/MMagueta][GitHub]] | [[file:../static/rss.xml][RSS]] |
 #+end_header
