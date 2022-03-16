@@ -1,0 +1,10 @@
+#+TITLE: Magueta's Personal Blog
+
+* About
+
+In this repository you have access to the source code of my blog. The
+entire web site is made generated using GNU/Emacs, where the posts are
+written in org-mode and scripting is made with Elisp, no Javascript.
+
+For more information on how to use such source code, I made a post
+about it [[eww:https://www.marcosmagueta.com/essays/programming/hosting-emacs-nix.html][here]].
