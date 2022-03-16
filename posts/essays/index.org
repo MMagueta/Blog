@@ -9,7 +9,7 @@ often.
 
 * Programming
   + [[file:programming/hosting-emacs-nix.org][Hosting with NixOS and Emacs]]
-  + [[file:programming/serializing-types.org][Serializing F# types and Hindley-Milner]]
+  + Serializing F# types and Hindley-Milner : WIP
   + Using FParsec, a non boring guide : WIP
   + Factor and Forth, assembly taken seriously : WIP
   + A defense to grammar : WIP
